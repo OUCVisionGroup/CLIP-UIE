@@ -26,5 +26,13 @@ The preparation for the pre-trained model. (a) Randomly select template A from t
 </tr>
 </table>
 
+## :desktop_computer: Requirements
+
+- Pytorch >= 1.13.1
+- CUDA >= 11.3
+- Other required packages in `requirements.txt`
+- 
+## :running_woman: Inference
+
 ### Thanks
 Our code is based on [SR3](https://github.com/Janspiry/Image-Super-Resolution-via-Iterative-Refinement/tree/master) and [CLIP-LIT](https://github.com/ZhexinLiang/CLIP-LIT). You can refer to their README files and source code for more implementation details. 
