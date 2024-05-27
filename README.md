@@ -39,7 +39,7 @@ The preparation for the pre-trained model. (a) Randomly select template A from t
 | Name                       |  Model                       |
 |----------------------------|--------------------------------------|
 | CLIP-UIE | [Download 🔗](https://drive.google.com/drive/folders/190-6QlKtPKBcG1fxSlXLMKop2exzgGkM?usp=sharing)|
-| Learned Prompt | [Download 🔗](https://drive.google.com/file/d/137kv61ilvRJhjEGTmGR59dN03V6ptFPZ/view?usp=sharing)|
+| Learned Prompt | [Download 🔗](https://drive.google.com/drive/folders/1mnvp0sEFbSPCbSqlG-ETYSzmCO-cLTRg?usp=sharing)|
 
 
 ### Thanks
