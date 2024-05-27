@@ -32,7 +32,6 @@ The preparation for the pre-trained model. (a) Randomly select template A from t
 - Pytorch >= 1.13.1
 - CUDA >= 11.3
 - Other required packages in `requirements.txt`
-- 
 ## :running_woman: Inference
 ## 📦 Models
 
@@ -41,6 +40,10 @@ The preparation for the pre-trained model. (a) Randomly select template A from t
 | CLIP-UIE | [Download 🔗](https://drive.google.com/drive/folders/190-6QlKtPKBcG1fxSlXLMKop2exzgGkM?usp=sharing)|
 | Learned Prompt | [Download 🔗](https://drive.google.com/drive/folders/1mnvp0sEFbSPCbSqlG-ETYSzmCO-cLTRg?usp=sharing)|
 
+## Testing steps:
+- Putting your data into the dataset folder. 
+- Download the pre-trained model. Then, put the model in the experiments_supervised folder and change the corresponding paths in config/sr_sr3_32_256_UIEB_SUIM_E_plus_finetune_clip_classifier.json.
+- Execute infer_finetune_infer.py to get the inference results in a new folder called experiments.
 
 ### Thanks
 Our code is based on [SR3](https://github.com/Janspiry/Image-Super-Resolution-via-Iterative-Refinement/tree/master) and [CLIP-LIT](https://github.com/ZhexinLiang/CLIP-LIT). You can refer to their README files and source code for more implementation details. 
