@@ -36,3 +36,7 @@ The preparation for the pre-trained model. (a) Randomly select template A from t
 
 ### Thanks
 Our code is based on [SR3](https://github.com/Janspiry/Image-Super-Resolution-via-Iterative-Refinement/tree/master) and [CLIP-LIT](https://github.com/ZhexinLiang/CLIP-LIT). You can refer to their README files and source code for more implementation details. 
+
+## :love_you_gesture: Citation
+If you find our work useful for your research, please consider citing the paper:
+
