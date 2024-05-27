@@ -34,6 +34,13 @@ The preparation for the pre-trained model. (a) Randomly select template A from t
 - Other required packages in `requirements.txt`
 - 
 ## :running_woman: Inference
+## 📦 Models
+
+| Name                       |  Model                       |
+|----------------------------|--------------------------------------|
+| CLIP-UIE | [Download 🔗](https://drive.google.com/drive/folders/190-6QlKtPKBcG1fxSlXLMKop2exzgGkM?usp=sharing)|
+| Learned Prompt | [Download 🔗](https://drive.google.com/file/d/137kv61ilvRJhjEGTmGR59dN03V6ptFPZ/view?usp=sharing)|
+
 
 ### Thanks
 Our code is based on [SR3](https://github.com/Janspiry/Image-Super-Resolution-via-Iterative-Refinement/tree/master) and [CLIP-LIT](https://github.com/ZhexinLiang/CLIP-LIT). You can refer to their README files and source code for more implementation details. 
