@@ -11,8 +11,8 @@
     OUCVisionGroup, Ocean University of China; 
 </div>
 <div>
-    <h4 align="center">
+    <h3 align="center">
         <a href="https://oucvisiongroup.github.io/CLIP-UIE.html/" target='_blank'>[Project Page]</a>•
         <a href="" target='_blank'>[arXiv]</a> 
-    </h4>
+    </h3>
 </div>
