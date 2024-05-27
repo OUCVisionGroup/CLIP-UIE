@@ -25,6 +25,7 @@ The preparation for the pre-trained model. (a) Randomly select template A from t
           </center></td>
 </tr>
 </table>
+</div>
 
 ## :desktop_computer: Requirements
 
