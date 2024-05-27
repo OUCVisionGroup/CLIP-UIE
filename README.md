@@ -17,5 +17,5 @@
     </h4>
 </div>
 
-## Thanks
+### Thanks
 Our code is based on [SR3](https://github.com/Janspiry/Image-Super-Resolution-via-Iterative-Refinement/tree/master) and [CLIP-LIT](https://github.com/ZhexinLiang/CLIP-LIT). You can refer to their README files and source code for more implementation details. 
