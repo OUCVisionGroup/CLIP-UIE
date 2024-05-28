@@ -13,7 +13,7 @@
 <div>
     <h4 align="center">
         <a href="https://oucvisiongroup.github.io/CLIP-UIE.html/" target='_blank'>[Project Page]</a>•
-        <a href="https://arxiv.org/abs/2405.16214" target='_blank'>[arXiv]</a> 
+        <a href="" target='_blank'>[arXiv]</a> 
     </h4>
 </div>
 
