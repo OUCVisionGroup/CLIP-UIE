@@ -1,49 +1,162 @@
 <div align="center">
 
-<h1>Underwater Image Enhancement by Diffusion Model with Customized CLIP-Classifier</h1>
-<div>
-    <h4 align="center">
-        <a href="https://oucvisiongroup.github.io/CLIP-UIE.html/" target='_blank'>[Project Page]</a>•
-        <a href="" target='_blank'>[arXiv]</a> 
-    </h4>
+<h1>🌊 Underwater Image Enhancement by Diffusion Model with Customized CLIP-Classifier</h1>
+
+<h4 align="center">
+    <a href="https://oucvisiongroup.github.io/CLIP-UIE.html/" target='_blank'>[Project Page]</a> •
+    <a href="" target='_blank'>[arXiv]</a>
+</h4>
+
+<img src="images/overflow.jpg" height="240">
+<p align="center" style="font-style: italic;">
+The image-to-image diffusion model SR3 is trained on the UIE-air dataset to map synthetic underwater images to natural in-air images.
+</p>
+
 </div>
 
-<table>
-    <tr>
-        <td><center><img src="images/overflow.jpg" height="200">
-            
-The preparation for the pre-trained model. (a) Randomly select template A from the template pool (underwater domain). Then,  the Color Transfer module, guided by template A, degrades an in-air natural image from INaturalist into underwater domain, constructing paired datasets for training image-to-image diffusion model. (b) The image-to-image diffusion model SR3 is trained to learn the prior knowledge, the mapping from the real underwater degradation domain and the real in-air natural domain, and to generate the corresponding enhancement results under the condition of the input synthetic underwater images produced by Color Transfer.
-          </center></td>
-</tr>
-</table>
-</div>
+---
 
-## :desktop_computer: Requirements
+## 💻 Requirements
 
-- Pytorch >= 1.13.1
-- CUDA >= 11.3
-- Other required packages in `requirements.txt`
-## :running_woman: Inference
+- PyTorch >= 1.13.1  
+- CUDA >= 11.3  
+- Other dependencies are listed in `requirements.txt`  
+
+---
+
+# 🚀 Inference Guide for CLIP-UIE
+
+This section outlines the steps to run inference using the CLIP-UIE model.
+
+---
+
+### 📝 Step 1: Prepare the Dataset
+
+Run the data preparation script:
+
+```bash
+python ./data/prepare_data.py
+```
+
+Specify your own directories for raw and reference images:
+
+```python
+parser.add_argument('--path_raw', '-p1', type=str, default='/your/path/to/raw')
+parser.add_argument('--path_ref', '-p2', type=str, default='/your/path/to/ref')
+```
+
+---
+
+### 📥 Step 2: Download and Place Pretrained Models
+
+- Download the **[CLIP-UIE diffusion model](https://drive.google.com/drive/folders/190-6QlKtPKBcG1fxSlXLMKop2exzgGkM?usp=sharing)** and place it in:
+
+```
+./Checkpoint/diffusion_model/
+```
+
+- Download the **[Learned Prompt](https://drive.google.com/drive/folders/1mnvp0sEFbSPCbSqlG-ETYSzmCO-cLTRg?usp=sharing)** and place it in:
+
+```
+./Checkpoint/prompt/
+```
+
+---
+
+### ⚙️ Step 3: Configure Inference Settings
+
+Edit the configuration file:
+
+```
+./config/sr_sr3_32_256_CLIP-UIE.json
+```
+
+Update the fields:
+
+```json
+"resume_state": "path/to/your/diffusion_model_checkpoint",
+"learn_prompt_path": "path/to/your/learned_prompt",
+"val": {
+    "dataroot": "path/to/your/validation_data"
+}
+```
+
+---
+
+### ▶️ Step 4: Run Inference
+
+Run the inference script:
+
+```bash
+python infer.py
+```
+
+The output results will be saved to the `./experiments/` directory.
+
+---
+
 ## 📦 Models
 
-| Name                       |  Model                       |
-|----------------------------|--------------------------------------|
-| CLIP-UIE | [Download 🔗](https://drive.google.com/drive/folders/190-6QlKtPKBcG1fxSlXLMKop2exzgGkM?usp=sharing)|
-| Learned Prompt | [Download 🔗](https://drive.google.com/drive/folders/1mnvp0sEFbSPCbSqlG-ETYSzmCO-cLTRg?usp=sharing)|
+| Name           | Download Link |
+|----------------|----------------|
+| CLIP-UIE       | [🔗 Download](https://drive.google.com/drive/folders/190-6QlKtPKBcG1fxSlXLMKop2exzgGkM?usp=sharing) |
+| Learned Prompt | [🔗 Download](https://drive.google.com/drive/folders/1mnvp0sEFbSPCbSqlG-ETYSzmCO-cLTRg?usp=sharing) |
 
-## Testing steps:
-- Download the pre-trained model. Then, put the model in the weights folder and change the corresponding paths in config/sr_sr3_32_256_train_data.json.
-- You also need to change the address of sys.path.append('your path') in.\CLIP-UIE\model\sr3_modules\clip_score.py
-- Execute infer_demo.py to get the inference results in a new folder called experiments.
-  
-## Training steps:
-- Download the pre-trained model. Then, put the model in the weights folder and change the corresponding paths in config/sr_sr3_32_256_train_data.json.
-- You also need to change the address of sys.path.append('your path') in.\CLIP-UIE\model\sr3_modules\clip_score.py
-- You prepare your own dataset, refer to the example I gave in /data/liusx/Pycharm/CLIP-UIE/data/dataset/train_data, focusing on hr_256 and sr_32_256, lr_32 is not important.
-- Run train.py directly to train your own model.
-### Thanks
-Our code is based on [SR3](https://github.com/Janspiry/Image-Super-Resolution-via-Iterative-Refinement/tree/master) and [CLIP-LIT](https://github.com/ZhexinLiang/CLIP-LIT). You can refer to their README files and source code for more implementation details. 
+---
 
-## :love_you_gesture: Citation
-If you find our work useful for your research, please consider citing the paper:
+# 🏋️‍♂️ Training Guide for CLIP-UIE
 
+This section provides steps to train the CLIP-UIE model.
+
+---
+
+### 🧩 Step 1: Prepare Your Dataset
+
+Use the instructions in the [Inference Guide](#-inference-guide-for-clip-uie) to prepare your training dataset with `prepare_data.py`.
+
+---
+
+### ⚙️ Step 2: Update Dataset Path
+
+Open:
+
+```
+./config/sr_sr3_32_256_CLIP-UIE.json
+```
+
+Update the training section:
+
+```json
+"train": {
+    "dataroot": "/your/path/to/training_dataset"
+}
+```
+
+---
+
+### ▶️ Step 3: Start Training
+
+Execute:
+
+```bash
+python train.py
+```
+
+This will begin training with the specified configuration.
+
+---
+
+
+
+## 🙏 Thanks
+Our code is based on [SR3](https://github.com/Janspiry/Image-Super-Resolution-via-Iterative-Refinement/tree/master) and [CLIP-LIT](https://github.com/ZhexinLiang/CLIP-LIT). You can refer to their README files and source code for more implementation details.
+
+---
+
+## 📖 Citation
+
+If you find our work useful, please consider citing:
+
+```
+[Insert your citation here once available]
+```
