@@ -6,9 +6,7 @@ from inspect import isfunction
 from functools import partial
 import numpy as np
 from tqdm import tqdm
-import sys
-sys.path.append('/data/liusx/Pycharm/underwater_clip_learning/model/sr3_modules')
-import clip_score
+from . import clip_score
 
 def _warmup_beta(linear_start, linear_end, n_timestep, warmup_frac):
     betas = linear_end * np.ones(n_timestep, dtype=np.float64)
@@ -235,8 +233,9 @@ class GaussianDiffusion(nn.Module):
     def p_losses(self, x_in, noise=None):
         x_start = x_in['HR']
         [b, c, h, w] = x_start.shape
+
         t = np.random.randint(1, self.num_timesteps + 1)
-        #t = np.random.randint(1, 1501)
+
         continuous_sqrt_alpha_cumprod = torch.FloatTensor(
             np.random.uniform(
                 self.sqrt_alphas_cumprod_prev[t-1],
@@ -257,32 +256,18 @@ class GaussianDiffusion(nn.Module):
             x_recon = self.denoise_fn(
                 torch.cat([x_in['SR'], x_noisy], dim=1), continuous_sqrt_alpha_cumprod)
         x_0=self.q_predict_start_from_noise(x_noisy, continuous_sqrt_alpha_cumprod.view(-1, 1, 1, 1), x_recon)
-        # x_0 = torch.clamp(x_0, 0, 1)
-        loss = self.loss_func(noise, x_recon)
-        return loss
-        # x_1 = (torch.clamp(x_0, -1, 1) + 1) / 2
-        # x_start_1 = (torch.clamp(x_start, -1, 1) + 1) / 2
-        # x_sr = (torch.clamp(x_in['SR'], -1, 1)+1)/2
-        #loss_clip = 16 * 20 * self.L_clip(x_1, self.text_features)
+
+        loss = 1.667 * 2000 * self.loss_func(noise, x_recon)
 
 
-        #loss_clip_MSE=25*self.L_clip_MSE(x_1, x_start_1, [1.0,1.0,1.0,1.0,0.5])
+        x_1 = (torch.clamp(x_0, -1, 1) + 1) / 2
+        x_start_1 = (torch.clamp(x_start, -1, 1) + 1) / 2
+        x_sr = (torch.clamp(x_in['SR'], -1, 1)+1)/2
+        loss_clip = 16 * 20 * self.L_clip(x_1, self.text_features)
 
-        # loss1 = 2000 * loss + 0.4*loss_clip #目前得出的最好结果
+        loss1 = 0.6 * loss + 0.4 * loss_clip #目前得出的最好结果
 
-        #return loss1
-        # if t < round(0.8*self.num_timesteps):
-        #     x_1 = (torch.clamp(x_0, -1, 1)+1)/2
-        #     # x_start_1 = (torch.clamp(x_start, -1, 1)+1)/2
-        #     # x_sr = (torch.clamp(x_in['SR'], -1, 1)+1)/2
-        #     loss_clip = 16 * 20 * self.L_clip(x_1, self.text_features)
-        #
-        #     # loss_clip_MSE=25*self.L_clip_MSE(x_1, x_start_1, [1.0,1.0,1.0,1.0,0.5])
-        #
-        #     loss1 = 2000*loss + 0.4*loss_clip
-        #     return loss1
-        # else:
-        #     return 2000*loss
-        #L_clip_MSE(final, img_lowlight, [1.0, 1.0, 1.0, 1.0, 0.5])
+        return loss1
+
     def forward(self, x, *args, **kwargs):
         return self.p_losses(x, *args, **kwargs)

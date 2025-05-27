@@ -12,7 +12,7 @@ import numpy as np
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('-c', '--config', type=str, default='config/sr_sr3_32_256_UIEB_SUIM_E_plus_finetune_clip_classifier.json',
+    parser.add_argument('-c', '--config', type=str, default='config/sr_sr3_32_256_CLIP-UIE.json',
                         help='JSON file for configuration')
     parser.add_argument('-p', '--phase', type=str, choices=['train', 'val'],
                         help='Run either train(training) or val(generation)', default='train')

@@ -1,12 +1,12 @@
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 from turtle import forward
 import torchvision.transforms as transforms
 import torch
 import clip
 import torch.nn as nn
 from torch.nn import functional as F
-#from CLIP.clip import load
-import sys
-sys.path.append('/data/liusx/Pycharm/underwater_clip_learning/model/sr3_modules/CLIP')
 from CLIP.clip import load
 from collections import OrderedDict
 

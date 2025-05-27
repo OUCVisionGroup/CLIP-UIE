@@ -5,10 +5,14 @@ pandas
 tqdm
 lmdb
 opencv-python
-pillow
 tensorboardx
 wandb
 ftfy==6.1.1
+regex==2022.8.17
+setuptools==63.4.1
+Pillow==9.2.0
 pyiqa==0.1.4
 regex==2022.8.17
 setuptools==63.4.1
+
+
