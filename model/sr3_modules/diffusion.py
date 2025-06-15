@@ -265,7 +265,7 @@ class GaussianDiffusion(nn.Module):
         x_sr = (torch.clamp(x_in['SR'], -1, 1)+1)/2
         loss_clip = 16 * 20 * self.L_clip(x_1, self.text_features)
 
-        loss1 = 0.6 * loss + 0.4 * loss_clip #目前得出的最好结果
+        loss1 = 0.6 * loss + 0.4 * loss_clip 
 
         return loss1
 
