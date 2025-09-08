@@ -158,5 +158,12 @@ Our code is based on [SR3](https://github.com/Janspiry/Image-Super-Resolution-vi
 If you find our work useful, please consider citing:
 
 ```
-[Insert your citation here once available]
+@article{liu2025underwater,
+  title={Underwater image enhancement by diffusion model with customized clip-classifier},
+  author={Liu, Shuaixin and Li, Kunqian and Ding, Yilin and Qi, Qi},
+  journal={Pattern Recognition},
+  pages={112232},
+  year={2025},
+  publisher={Elsevier}
+}
 ```
